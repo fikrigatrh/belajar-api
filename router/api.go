@@ -9,8 +9,11 @@ import (
 )
 
 func NewRouter() *gin.Engine {
+
 	router := gin.New() // CALL LIBRARY GIN GONIC FOR ROUTER
 	DB := db.DB // CALL FUNCTION DB
+	router.Use(gin.Logger())
+	router.Use(gin.Recovery())
 
 	// CALL DEPENDENCY REPOSITORY
 	userRepo := repo.NewUserRepoImpl(DB)
